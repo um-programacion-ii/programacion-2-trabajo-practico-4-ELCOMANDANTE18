@@ -463,56 +463,44 @@ class LibroServiceImplTest {
   - Documentación de endpoints
 
 
-## 🛠️ Uso de la API REST
+## 🚀 Uso
+
+1.  **Requisitos:** Java 21+, Maven 3.9+, conocimientos de POO, SOLID, Spring y REST.
+2.  **Clonar:** `git clone <URL_DEL_REPOSITORIO>`
+3.  **Construir:** `mvn clean install`
+4.  **Ejecutar:** `mvn spring-boot:run` (API en `http://localhost:8080`).
+
+## ✅ Pruebas
+
+Todos los tests pasaron exitosamente (ver imagen y "Guía de Testing").
+
+![Resultados de las Pruebas](test_results.png)
+
+## 🛠️ API REST
 
 ### Libros (/api/libros)
 
-* `GET /`: Obtener todos los libros.
-* `GET /{id}`: Obtener un libro específico por su ID.
-* `POST /`: Crear un nuevo libro (requiere cuerpo de solicitud en formato JSON).
-* `PUT /{id}`: Actualizar la información de un libro existente (requiere cuerpo de solicitud en formato JSON).
-* `DELETE /{id}`: Eliminar un libro por su ID.
+* `GET /`: Obtener todos. `GET /{id}`: Por ID.
+* `POST /`: Crear. `PUT /{id}`: Actualizar.
+* `DELETE /{id}`: Eliminar.
 
 ### Usuarios (/api/usuarios)
 
-* `GET /`: Obtener todos los usuarios registrados.
-* `GET /{id}`: Obtener un usuario específico por su ID.
-* `POST /`: Crear un nuevo usuario (requiere cuerpo de solicitud en formato JSON).
-* `PUT /{id}`: Actualizar la información de un usuario existente (requiere cuerpo de solicitud en formato JSON).
-* `DELETE /{id}`: Eliminar un usuario por su ID.
+* `GET /`: Obtener todos. `GET /{id}`: Por ID.
+* `POST /`: Crear. `PUT /{id}`: Actualizar.
+* `DELETE /{id}`: Eliminar.
 
 ### Préstamos (/api/prestamos)
 
-* `GET /`: Obtener todos los préstamos realizados.
-* `GET /{id}`: Obtener un préstamo específico por su ID.
-* `POST /`: Realizar un nuevo préstamo (requiere parámetros en la URL, e.g., `?libroId=X&usuarioId=Y&fechaPrestamo=AAAA-MM-DD&fechaDevolucion=AAAA-MM-DD`).
-* `PUT /{id}/devolver`: Marcar un préstamo como devuelto (requiere parámetros en la URL, e.g., `?fechaDevolucion=AAAA-MM-DD`).
-* `DELETE /{id}`: Eliminar un préstamo por su ID.
+* `GET /`: Obtener todos. `GET /{id}`: Por ID.
+* `POST /`: Prestar (query params). `PUT /{id}/devolver`: Devolver (query param).
+* `DELETE /{id}`: Eliminar.
 
+## 🏛️ Arquitectura
 
-## 🏛️ Arquitectura y Diseño
+Sistema de 3 capas (Presentación, Servicio, Almacenamiento en memoria con `ArrayList`). Spring Boot, API RESTful, principios SOLID, testing completo.
 
-Este sistema sigue una arquitectura de tres capas:
-
-* **Presentación (Controllers):** Maneja las solicitudes HTTP y las respuestas.
-* **Servicio (Services):** Contiene la lógica de negocio.
-* **Almacenamiento (Repositories):** Persistencia de datos en memoria utilizando `ArrayList`.
-
-Se utilizaron **Spring Boot** para la configuración y **API RESTful** para la comunicación. El diseño se basó en los principios **SOLID**, y se implementó un **testing completo** (para más detalles, ver la sección "Guía de Testing").
-
-**Decisiones de Diseño Clave:**
-
-* **Persistencia en Memoria:** Se optó por el almacenamiento en memoria con `ArrayList`.
-* **Framework:** Se utilizó Spring Boot.
-* **Estilo de API:** Se implementó una API REST.
-
-**Mejoras Futuras Consideradas:**
-
-* Implementación de una base de datos real.
-* Adición de autenticación y autorización.
-* Implementación de paginación y filtros.
-* Manejo de errores más detallado.
-
+* **Decisiones:** Persistencia en memoria, Spring Boot, REST.
 ## 📚 Recursos Adicionales
 
 - [Documentación de Spring Boot](https://spring.io/projects/spring-boot)
