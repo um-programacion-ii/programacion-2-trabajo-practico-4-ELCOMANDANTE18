@@ -1,46 +1,70 @@
----
-name: Issue Template
-about: Template para crear nuevos issues
-title: ''
-labels: ''
-assignees: ''
+name: Plantilla de Pull Request para Gestión de Biblioteca
+description: Plantilla para facilitar la revisión de Pull Requests en el proyecto de gestión de biblioteca.
+title: "feat/issue-[Número del Issue]: [Breve descripción de los cambios]"
+labels: ["pull-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Por favor, completa la siguiente información para facilitar la revisión de este Pull Request.**
+        Asegúrate de que este Pull Request esté vinculado al **Issue** correspondiente y a la **Etapa del Proyecto**.
 
----
+  - type: input
+    id: issue_vinculado
+    attributes:
+      label: Issue Vinculado
+      description: ¿A qué Issue específico corresponde este Pull Request? (Ejemplo: #1, #4)
+      placeholder: "#Número del Issue"
+    validations:
+      required: true
 
-## Descripción
-[Describe brevemente el propósito de este issue]
+  - type: dropdown
+    id: etapa_relacionada
+    attributes:
+      label: Etapa del Proyecto Relacionada
+      description: ¿A qué etapa del proyecto pertenece este Pull Request?
+      options:
+        - Etapa 1: Configuración del Proyecto y Modelos Base
+        - Etapa 2: Implementación de Repositories y Services
+        - Etapa 3: Implementación de Controllers
+        - Etapa 4: Testing y Documentación
+    validations:
+      required: true
 
-## Requisitos Técnicos
-- [ ] Requisito 1
-- [ ] Requisito 2
-- [ ] Requisito 3
+  - type: textarea
+    id: resumen_cambios
+    attributes:
+      label: Resumen de los Cambios
+      description: Describe brevemente los cambios introducidos en esta rama. ¿Qué problema resuelve o qué funcionalidad añade?
+    validations:
+      required: true
 
-## Criterios de Aceptación
-- [ ] Criterio 1
-- [ ] Criterio 2
-- [ ] Criterio 3
+  - type: textarea
+    id: detalles_implementacion
+    attributes:
+      label: Detalles de Implementación
+      description: Proporciona detalles técnicos relevantes sobre cómo se implementaron los cambios. Menciona clases, interfaces, repositorios, controladores, métodos clave o decisiones de diseño importantes, según la etapa.
+    validations:
+      required: true
 
-## Dependencias
-- [ ] Dependencia 1
-- [ ] Dependencia 2
+  - type: checkboxes
+    id: checklist_revision
+    attributes:
+      label: Checklist de Revisión
+      description: Marca los siguientes puntos para confirmar que se han cumplido antes de solicitar la revisión.
+      options:
+        - label: El código sigue las convenciones del proyecto (si existen).
+        - label: Se han implementado pruebas unitarias para cubrir los cambios (si aplica a esta etapa).
+        - label: Se han implementado pruebas de integración para cubrir los cambios (si aplica a esta etapa).
+        - label: Todas las pruebas pasan correctamente.
+        - label: No hay errores de linting o warnings (si se configuraron).
+        - label: La documentación del código se ha actualizado (si es necesario en esta etapa).
+        - label: La documentación de la API se ha actualizado (si aplica a esta etapa).
+        - label: Se han aplicado los principios de diseño SOLID relevantes para esta etapa (SRP, ISP, DIP, según corresponda).
+        - label: Los cambios son coherentes con el objetivo del Issue vinculado y la etapa del proyecto.
 
-## Complejidad
-- [ ] Baja
-- [ ] Media
-- [ ] Alta
-
-## Labels
-- [ ] `enhancement`
-- [ ] `bug`
-- [ ] `documentation`
-- [ ] `testing`
-- [ ] `model`
-- [ ] `repository`
-- [ ] `service`
-- [ ] `controller`
-- [ ] `database`
-
-## Asignación
-- Milestone: [Nombre del Milestone]
-- Project: Sistema de Gestión de Biblioteca
-- Estado: To Do 
+  - type: textarea
+    id: consideraciones_adicionales
+    attributes:
+      label: Consideraciones Adicionales
+      description: ¿Hay algún aspecto específico que el revisor deba tener en cuenta? ¿Alguna decisión de diseño, posible problema o área que requiera especial atención?

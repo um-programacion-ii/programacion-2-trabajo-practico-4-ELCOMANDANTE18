@@ -22,3 +22,54 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# IntelliJ IDEA related files
+.idea/
+*.iml
+
+# Eclipse related files
+.classpath
+.project
+.settings/
+bin/
+
+# NetBeans related files
+nbproject/
+build/
+dist/
+.nb-gradle/
+
+# Maven related
+target/
+pom.xml.tag
+pom.xml.backup
+.mvn/wrapper/maven-wrapper.jar.sha256
+.mvn/wrapper/maven-wrapper.properties
+
+# Gradle related
+.gradle/
+build/
+settings.gradle.kts.lockfile
+gradle-app.setting
+gradle-build-scan-data/
+gradle/configuration-cache/
+gradle/execution-history/
+gradle/incremental-build-cache/
+gradle/native/
+
+# Spring Boot DevTools restart
+spring-boot-devtools.properties
+
+# OS Specific files (e.g., .DS_Store on macOS)
+.DS_Store
+Thumbs.db
+
+# Temporary files and directories
+tmp/
+temp/
+buildcache/
+
+# Environment specific files (consider adding more if needed)
+.env
+*.swp # Vim swap files
+*.swo # Vim swap files
