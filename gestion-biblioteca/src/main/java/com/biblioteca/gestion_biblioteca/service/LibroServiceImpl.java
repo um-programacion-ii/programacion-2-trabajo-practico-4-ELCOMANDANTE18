@@ -1,7 +1,7 @@
 package com.biblioteca.gestion_biblioteca.service;
 
 import com.biblioteca.gestion_biblioteca.Libro;
-import com.biblioteca.gestion_biblioteca.repository.LibroRepository;
+import com.biblioteca.gestion_biblioteca.almacenamiento.LibroAlmacenamiento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -10,43 +10,45 @@ import java.util.Optional;
 @Service
 public class LibroServiceImpl implements LibroService {
 
-    private final LibroRepository libroRepository;
-
     @Autowired
-    public LibroServiceImpl(LibroRepository libroRepository) {
-        this.libroRepository = libroRepository;
-    }
+    private LibroAlmacenamiento libroAlmacenamiento;
 
     @Override
     public Libro guardarLibro(Libro libro) {
-        return libroRepository.save(libro);
+        return libroAlmacenamiento.guardar(libro);
     }
 
     @Override
     public Optional<Libro> obtenerLibroPorId(Long id) {
-        return libroRepository.findById(id);
+        return libroAlmacenamiento.obtenerPorId(id);
     }
 
     @Override
     public Libro obtenerLibroPorIsbn(String isbn) {
-        return libroRepository.findByIsbn(isbn);
+        return libroAlmacenamiento.obtenerPorIsbn(isbn)
+                .orElse(null);
     }
 
     @Override
     public List<Libro> obtenerTodosLibros() {
-        return libroRepository.findAll();
+        return libroAlmacenamiento.obtenerTodos();
     }
+
     @Override
     public void eliminarLibro(Long id) {
-        libroRepository.deleteById(id);
+        libroAlmacenamiento.eliminar(id);
     }
+
     @Override
-    public Libro actualizarLibro(Long id, Libro libro) {
-        Optional<Libro> libroExistente = libroRepository.findById(id);
-        if (libroExistente.isPresent()) {
-            libro.setId(id); // Aseguramos que el ID sea el correcto para la actualización
-            return libroRepository.save(libro);
+    public Libro actualizarLibro(Long id, Libro libroActualizado) {
+        Optional<Libro> libroExistenteOptional = libroAlmacenamiento.obtenerPorId(id);
+
+        if (libroExistenteOptional.isPresent()) {
+            Libro libroExistente = libroExistenteOptional.get();
+            libroActualizado.setId(libroExistente.getId()); // Aseguramos usar el ID existente
+            return libroAlmacenamiento.guardar(libroActualizado);
+        } else {
+            return null; // O lanza una excepción
         }
-        return null; // O lanza una excepción indicando que el libro no existe
     }
 }

@@ -1,7 +1,7 @@
 package com.biblioteca.gestion_biblioteca.service;
 
 import com.biblioteca.gestion_biblioteca.Usuario;
-import com.biblioteca.gestion_biblioteca.repository.UsuarioRepository;
+import com.biblioteca.gestion_biblioteca.almacenamiento.UsuarioAlmacenamiento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -10,45 +10,45 @@ import java.util.Optional;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
-    private final UsuarioRepository usuarioRepository;
-
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+    private UsuarioAlmacenamiento usuarioAlmacenamiento;
 
     @Override
     public Usuario guardarUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+        return usuarioAlmacenamiento.guardar(usuario);
     }
 
     @Override
     public Optional<Usuario> obtenerUsuarioPorId(Long id) {
-        return usuarioRepository.findById(id);
+        return usuarioAlmacenamiento.obtenerPorId(id);
     }
 
     @Override
     public Usuario obtenerUsuarioPorEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        return usuarioAlmacenamiento.obtenerPorEmail(email)
+                .orElse(null);
     }
 
     @Override
     public List<Usuario> obtenerTodosUsuarios() {
-        return usuarioRepository.findAll();
+        return usuarioAlmacenamiento.obtenerTodos();
     }
 
     @Override
     public void eliminarUsuario(Long id) {
-        usuarioRepository.deleteById(id);
+        usuarioAlmacenamiento.eliminar(id);
     }
 
     @Override
-    public Usuario actualizarUsuario(Long id, Usuario usuario) {
-        Optional<Usuario> usuarioExistente = usuarioRepository.findById(id);
-        if (usuarioExistente.isPresent()) {
-            usuario.setId(id);
-            return usuarioRepository.save(usuario);
+    public Usuario actualizarUsuario(Long id, Usuario usuarioActualizado) {
+        Optional<Usuario> usuarioExistenteOptional = usuarioAlmacenamiento.obtenerPorId(id);
+
+        if (usuarioExistenteOptional.isPresent()) {
+            Usuario usuarioExistente = usuarioExistenteOptional.get();
+            usuarioActualizado.setId(usuarioExistente.getId()); // Aseguramos usar el ID existente
+            return usuarioAlmacenamiento.guardar(usuarioActualizado);
+        } else {
+            return null; // O lanza una excepción
         }
-        return null; // O lanza una excepción
     }
 }
