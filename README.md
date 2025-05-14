@@ -119,8 +119,8 @@ Desarrollar un sistema de gestión de biblioteca utilizando Spring Framework, im
 > 💡 **Nota**: Esta estimación considera la experiencia adquirida en trabajos anteriores y la complejidad de implementar una arquitectura en capas con Spring Framework. El tiempo se ha ajustado considerando que no se requiere implementación de persistencia real.
 
 ## 👨‍🎓 Información del Alumno
-- **Nombre y Apellido**: [Nombre y Apellido del Alumno]
-- **Legajo**: [Número de Legajo]
+- **Nombre y Apellido**: [Victor Gimenez]
+- **Legajo**: [61174]
 
 ## 📋 Requisitos Previos
 
@@ -461,6 +461,57 @@ class LibroServiceImplTest {
   - Requisitos del sistema
   - Ejemplos de uso
   - Documentación de endpoints
+
+
+## 🛠️ Uso de la API REST
+
+### Libros (/api/libros)
+
+* `GET /`: Obtener todos los libros.
+* `GET /{id}`: Obtener un libro específico por su ID.
+* `POST /`: Crear un nuevo libro (requiere cuerpo de solicitud en formato JSON).
+* `PUT /{id}`: Actualizar la información de un libro existente (requiere cuerpo de solicitud en formato JSON).
+* `DELETE /{id}`: Eliminar un libro por su ID.
+
+### Usuarios (/api/usuarios)
+
+* `GET /`: Obtener todos los usuarios registrados.
+* `GET /{id}`: Obtener un usuario específico por su ID.
+* `POST /`: Crear un nuevo usuario (requiere cuerpo de solicitud en formato JSON).
+* `PUT /{id}`: Actualizar la información de un usuario existente (requiere cuerpo de solicitud en formato JSON).
+* `DELETE /{id}`: Eliminar un usuario por su ID.
+
+### Préstamos (/api/prestamos)
+
+* `GET /`: Obtener todos los préstamos realizados.
+* `GET /{id}`: Obtener un préstamo específico por su ID.
+* `POST /`: Realizar un nuevo préstamo (requiere parámetros en la URL, e.g., `?libroId=X&usuarioId=Y&fechaPrestamo=AAAA-MM-DD&fechaDevolucion=AAAA-MM-DD`).
+* `PUT /{id}/devolver`: Marcar un préstamo como devuelto (requiere parámetros en la URL, e.g., `?fechaDevolucion=AAAA-MM-DD`).
+* `DELETE /{id}`: Eliminar un préstamo por su ID.
+
+
+## 🏛️ Arquitectura y Diseño
+
+Este sistema sigue una arquitectura de tres capas:
+
+* **Presentación (Controllers):** Maneja las solicitudes HTTP y las respuestas.
+* **Servicio (Services):** Contiene la lógica de negocio.
+* **Almacenamiento (Repositories):** Persistencia de datos en memoria utilizando `ArrayList`.
+
+Se utilizaron **Spring Boot** para la configuración y **API RESTful** para la comunicación. El diseño se basó en los principios **SOLID**, y se implementó un **testing completo** (para más detalles, ver la sección "Guía de Testing").
+
+**Decisiones de Diseño Clave:**
+
+* **Persistencia en Memoria:** Se optó por el almacenamiento en memoria con `ArrayList`.
+* **Framework:** Se utilizó Spring Boot.
+* **Estilo de API:** Se implementó una API REST.
+
+**Mejoras Futuras Consideradas:**
+
+* Implementación de una base de datos real.
+* Adición de autenticación y autorización.
+* Implementación de paginación y filtros.
+* Manejo de errores más detallado.
 
 ## 📚 Recursos Adicionales
 
