@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Vg2EF-QZ)
 # 🚀 Trabajo Práctico: Sistema de Gestión de Biblioteca con Spring Framework
 
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.5-green)
@@ -118,8 +119,8 @@ Desarrollar un sistema de gestión de biblioteca utilizando Spring Framework, im
 > 💡 **Nota**: Esta estimación considera la experiencia adquirida en trabajos anteriores y la complejidad de implementar una arquitectura en capas con Spring Framework. El tiempo se ha ajustado considerando que no se requiere implementación de persistencia real.
 
 ## 👨‍🎓 Información del Alumno
-- **Nombre y Apellido**: [Nombre y Apellido del Alumno]
-- **Legajo**: [Número de Legajo]
+- **Nombre y Apellido**: [Victor Gimenez]
+- **Legajo**: [61174]
 
 ## 📋 Requisitos Previos
 
@@ -461,6 +462,45 @@ class LibroServiceImplTest {
   - Ejemplos de uso
   - Documentación de endpoints
 
+
+## 🚀 Uso
+
+1.  **Requisitos:** Java 21+, Maven 3.9+, conocimientos de POO, SOLID, Spring y REST.
+2.  **Clonar:** `git clone <URL_DEL_REPOSITORIO>`
+3.  **Construir:** `mvn clean install`
+4.  **Ejecutar:** `mvn spring-boot:run` (API en `http://localhost:8080`).
+
+## ✅ Pruebas
+
+Todos los tests pasaron exitosamente (ver imagen y "Guía de Testing").
+
+![Resultados de las Pruebas](test_results.png)
+
+## 🛠️ API REST
+
+### Libros (/api/libros)
+
+* `GET /`: Obtener todos. `GET /{id}`: Por ID.
+* `POST /`: Crear. `PUT /{id}`: Actualizar.
+* `DELETE /{id}`: Eliminar.
+
+### Usuarios (/api/usuarios)
+
+* `GET /`: Obtener todos. `GET /{id}`: Por ID.
+* `POST /`: Crear. `PUT /{id}`: Actualizar.
+* `DELETE /{id}`: Eliminar.
+
+### Préstamos (/api/prestamos)
+
+* `GET /`: Obtener todos. `GET /{id}`: Por ID.
+* `POST /`: Prestar (query params). `PUT /{id}/devolver`: Devolver (query param).
+* `DELETE /{id}`: Eliminar.
+
+## 🏛️ Arquitectura
+
+Sistema de 3 capas (Presentación, Servicio, Almacenamiento en memoria con `ArrayList`). Spring Boot, API RESTful, principios SOLID, testing completo.
+
+* **Decisiones:** Persistencia en memoria, Spring Boot, REST.
 ## 📚 Recursos Adicionales
 
 - [Documentación de Spring Boot](https://spring.io/projects/spring-boot)
